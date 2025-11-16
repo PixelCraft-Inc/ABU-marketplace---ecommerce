@@ -1,6 +1,7 @@
 import { serve } from "inngest/next";
 import { inngest } from "./inngest/client";
-import { syncUserCreation, syncUserUpdation, syncUserDeletion } from "./inngest/functions"; 
+import { syncUserCreation, syncUserUpdation, syncUserDeletion } from "./functions";
+
 // or wherever your functions actually live
 
 export const { GET, POST, PUT } = serve({
