@@ -1,6 +1,12 @@
 import { serve } from "inngest/next";
-import { inngest } from "./client";
-import { syncUserCreation, syncUserUpdation, syncUserDeletion } from "@/inngest/functions";
+import { inngest } from "@/app/api/inngest/client";
+
+// Import your functions
+import {
+  syncUserCreation,
+  syncUserUpdation,
+  syncUserDeletion,
+} from "@/functions";
 
 export const { GET, POST, PUT } = serve({
   client: inngest,
@@ -10,3 +16,137 @@ export const { GET, POST, PUT } = serve({
     syncUserDeletion,
   ],
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
