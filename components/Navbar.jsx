@@ -49,11 +49,12 @@ const Navbar = () => {
             <div className="mx-6">
                 <div className="flex items-center justify-between max-w-7xl mx-auto py-4  transition-all">
 
-                    <Link href="/" className="relative text-4xl font-semibold text-slate-700">
-                        <span className="text-green-600">go</span>cart<span className="text-green-600 text-5xl leading-0">.</span>
-                        <p className="absolute text-xs font-semibold -top-1 -right-8 px-3 p-0.5 rounded-full flex items-center gap-2 text-white bg-green-500">
-                            plus
-                        </p>
+                    <Link href="/" className="relative flex items-center gap-3">
+                        {/* Logo image (falls back to text if missing) */}
+                        <img src="/gs_logo.jpg" alt="ABU Marketplace" className="w-10 h-10 object-contain" />
+                        <div className="text-2xl font-semibold text-slate-700">
+                            ABU <span className="text-green-600">Marketplace</span>
+                        </div>
                     </Link>
 
                     {/* Desktop Menu */}
