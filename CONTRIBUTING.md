@@ -1,6 +1,6 @@
-# Contributing to GoCart
+# Contributing to ABU Marketplace
 
-Thank you for considering contributing to **GoCart**!
+Thank you for considering contributing to **ABU Marketplace**!
 We welcome contributions from everyone, whether it's fixing a bug, adding a new feature, or optimizing the codebase.
 
 ---
