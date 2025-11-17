@@ -1,59 +1,63 @@
 import { inngest } from "./client";
 import prisma from "@/lib/prisma";
 
-// Create User
+// CREATE USER
 export const syncUserCreation = inngest.createFunction(
-  { id: "sync-user-create" },
+  { id: "clerk-user-create" },
   { event: "clerk/user.created" },
   async ({ event }) => {
-    const { data } = event;
+    const user = event.data;
 
     await prisma.user.create({
       data: {
-        id: data.id,
-        email: data.email_addresses[0].email_address,
-        name: `${data.first_name} ${data.last_name}`,
-        image: data.image_url,
-        lastName: data.last_name,
+        id: user.id,
+        email: user.email_addresses[0].email_address,
+        name: `${user.first_name} ${user.last_name}`,
+        lastName: user.last_name,
+        image: user.image_url,
       },
     });
 
-    return "User created.";
+    return "User created in DB.";
   }
 );
 
-// Update User
+// UPDATE USER
 export const syncUserUpdation = inngest.createFunction(
-  { id: "sync-user-update" },
+  { id: "clerk-user-update" },
   { event: "clerk/user.updated" },
   async ({ event }) => {
-    const { data } = event;
+    const user = event.data;
 
     await prisma.user.update({
-      where: { id: data.id },
+      where: { id: user.id },
       data: {
-        email: data.email_addresses[0].email_address,
-        name: `${data.first_name} ${data.last_name}`,
-        image: data.image_url,
-        lastName: data.last_name,
+        email: user.email_addresses[0].email_address,
+        name: `${user.first_name} ${user.last_name}`,
+        lastName: user.last_name,
+        image: user.image_url,
       },
     });
 
-    return "User updated.";
+    return "User updated in DB.";
   }
 );
 
-// Delete User
+// DELETE USER
 export const syncUserDeletion = inngest.createFunction(
-  { id: "sync-user-delete" },
+  { id: "clerk-user-delete" },
   { event: "clerk/user.deleted" },
   async ({ event }) => {
-    const { data } = event;
-
     await prisma.user.delete({
-      where: { id: data.id },
+      where: { id: event.data.id },
     });
 
-    return "User deleted.";
+    return "User deleted from DB.";
   }
 );
+
+export const functions = [
+  syncUserCreation,
+  syncUserUpdation,
+  syncUserDeletion,
+];
