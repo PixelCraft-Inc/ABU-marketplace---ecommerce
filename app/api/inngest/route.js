@@ -6,7 +6,7 @@ import {
   syncUserCreation,
   syncUserUpdation,
   syncUserDeletion,
-} from "@/functions";
+} from "./functions";
 
 export const { GET, POST, PUT } = serve({
   client: inngest,
