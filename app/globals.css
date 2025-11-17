@@ -20,3 +20,38 @@
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+:root {
+    --color-primary: #111418; /* Black Pearl */
+    --color-secondary: #D1D5DB; /* Silver grey */
+    --color-bg: #FFFFFF; /* Pure white */
+    --color-soft: #F3F4F6; /* Mist grey */
+}
+
+html.dark {
+    --color-primary: #111418; /* primary stays dark */
+    --color-secondary: #D1D5DB;
+    --color-bg: #0b0c0c; /* near-black background for dark mode */
+    --color-soft: #111418;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+}
+
+.bg-app {
+    background-color: var(--color-bg);
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
+}
+
+.text-secondary {
+    color: var(--color-secondary) !important;
+}
+
+.bg-soft {
+    background-color: var(--color-soft) !important;
+}
