@@ -1,4 +1,4 @@
-import { inngest } from "./inngest/client";
+import { inngest } from "./client";
 import prisma from "@/lib/prisma";
 
 // Create User
