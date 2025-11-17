@@ -1,4 +1,4 @@
-'use client'
+ 'use client'
 import { PackageIcon, Search, ShoppingCart, ShoppingCartIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useUser, useClerk,UserButton  } from "@clerk/nextjs";
 import { useEffect } from "react";
+import { assets } from "../assets/assets"
 
 const Navbar = () => {
     
@@ -51,7 +52,7 @@ const Navbar = () => {
 
                     <Link href="/" className="relative flex items-center gap-3">
                         {/* Logo image (falls back to text if missing) */}
-                        <img src="/assets/Abulogo.png" alt="ABU Marketplace" className="w-10 h-10 object-contain" />
+                        <img src={assets.Abulogo.src ?? "/assets/Abulogo.png"} alt="ABU Marketplace" className="w-10 h-10 object-contain" />
                         <div className="text-2xl font-semibold text-slate-700">
                             ABU <span className="text-green-600">Marketplace</span>
                         </div>

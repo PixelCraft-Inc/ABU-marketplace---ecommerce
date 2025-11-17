@@ -2,19 +2,32 @@
 import { ArrowRight, StarIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const ProductDescription = ({ product }) => {
 
     const [selectedTab, setSelectedTab] = useState('Description')
 
-    return (
-        <div className="my-18 text-sm text-slate-600">
+    // Set browser tab title — include site name and restore previous title on unmount
+    useEffect(() => {
+        if (!product || !product.title) return
 
-            {/* Tabs */}
-            <div className="flex border-b border-slate-200 mb-6 max-w-2xl">
-                {['Description', 'Reviews'].map((tab, index) => (
-                    <button className={`${tab === selectedTab ? 'border-b-[1.5px] font-semibold' : 'text-slate-400'} px-3 py-2 font-medium`} key={index} onClick={() => setSelectedTab(tab)}>
+        const previousTitle = document.title
+        document.title = `${product.title} — ABU Marketplace`
+
+        return () => {
+            // restore previous title when component unmounts or product changes
+            document.title = previousTitle
+        }
+    }, [product])
+
+    const tabs = ['Description', 'Reviews']
+
+    return (
+        <div>
+            <div className="flex gap-3">
+                {tabs.map((tab, i) => (
+                    <button key={i} onClick={() => setSelectedTab(tab)} className={`px-3 py-1 rounded ${selectedTab === tab ? 'bg-green-500 text-white' : 'bg-transparent text-slate-700'}`}>
                         {tab}
                     </button>
                 ))}
