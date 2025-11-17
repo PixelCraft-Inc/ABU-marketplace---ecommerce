@@ -5,12 +5,36 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useUser, useClerk,UserButton  } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 const Navbar = () => {
     
     const {user} = useUser();
     const {openSignIn} = useClerk();
     const router = useRouter();
+
+    // When Clerk user becomes available, notify server to upsert into DB
+    useEffect(() => {
+        if (!user) return;
+
+        // prepare a payload shape Clerk may expose on the client
+        const payload = {
+            id: user.id,
+            email_addresses: user.emailAddresses ? user.emailAddresses.map(e => ({ email_address: e.emailAddress })) : undefined,
+            first_name: user.firstName,
+            last_name: user.lastName,
+            image_url: user.imageUrl || user.profileImageUrl || null,
+            email: user.primaryEmailAddress?.emailAddress || user.email
+        };
+
+        // Fire-and-forget
+        fetch('/api/clerk/sync', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => console.error('sync user failed', err));
+
+    }, [user]);
 
     const [search, setSearch] = useState('')
     const cartCount = useSelector(state => state.cart.total)
