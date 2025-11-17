@@ -1,16 +1,10 @@
-import { Outfit } from "next/font/google";
+// Removed next/font/google import due to build-time fetch failures in CI/local environment.
 import { Toaster } from "react-hot-toast";
 import StoreProvider from "@/app/StoreProvider";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const outfit = Outfit({ 
-    subsets: ["latin"], 
-    weight: ["400", "500", "600"],
-    display: "swap",
-    fallback: ["system-ui", "arial"],
-    adjustFontFallback: false
-});
+// Using system font fallback instead of fetching Google Fonts during build.
 
 export const metadata = {
     title: "GoCart. - Shop smarter",
@@ -21,7 +15,7 @@ export default function RootLayout({ children }) {
     return (
         <ClerkProvider>
         <html lang="en">
-            <body className={`${outfit.className} antialiased`}>
+            <body className={`antialiased`}>
                 <StoreProvider>
                     <Toaster />
                     {children}
