@@ -28,13 +28,6 @@
     --color-soft: #F3F4F6; /* Mist grey */
 }
 
-html.dark {
-    --color-primary: #111418; /* primary stays dark */
-    --color-secondary: #D1D5DB;
-    --color-bg: #0b0c0c; /* near-black background for dark mode */
-    --color-soft: #111418;
-}
-
 body {
     background-color: var(--color-bg);
     color: var(--color-primary);

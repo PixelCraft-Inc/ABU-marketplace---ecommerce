@@ -1,6 +1,5 @@
  'use client'
 import { PackageIcon, Search, ShoppingCart, ShoppingCartIcon } from "lucide-react";
-import { Moon, Sun } from 'lucide-react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -40,48 +39,14 @@ const Navbar = () => {
 
     const [search, setSearch] = useState('')
     const cartCount = useSelector(state => state.cart.total)
-    const [dark, setDark] = useState(false)
+    
 
     const handleSearch = (e) => {
         e.preventDefault()
         router.push(`/shop?search=${search}`)
     }
 
-    // Dark mode: read preference on mount and persist changes
-    useEffect(() => {
-        try {
-            const stored = localStorage.getItem('theme')
-            if (stored) {
-                const isDark = stored === 'dark'
-                setDark(isDark)
-                if (isDark) document.documentElement.classList.add('dark')
-                else document.documentElement.classList.remove('dark')
-            } else {
-                // respect system preference if no stored preference
-                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-                setDark(prefersDark)
-                if (prefersDark) document.documentElement.classList.add('dark')
-            }
-        } catch (e) {
-            // ignore in non-browser environments
-        }
-    }, [])
-
-    const toggleDark = () => {
-        try {
-            const next = !dark
-            setDark(next)
-            if (next) {
-                document.documentElement.classList.add('dark')
-                localStorage.setItem('theme', 'dark')
-            } else {
-                document.documentElement.classList.remove('dark')
-                localStorage.setItem('theme', 'light')
-            }
-        } catch (e) {
-            // ignore
-        }
-    }
+    
 
     return (
         <nav className="relative bg-white">
@@ -113,10 +78,6 @@ const Navbar = () => {
                             Cart
                             <button className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full">{cartCount}</button>
                         </Link>
-                        {/* Dark mode toggle */}
-                        <button onClick={toggleDark} aria-label="Toggle dark mode" className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700">
-                            {dark ? <Sun size={16} /> : <Moon size={16} />}
-                        </button>
                     {
                         !user ? (
                              <button  onClick={openSignIn} className="px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full">
@@ -151,12 +112,7 @@ const Navbar = () => {
                             </button>
                         )}
 
-                        {/* Mobile dark toggle */}
-                        <div className="mt-3">
-                            <button onClick={toggleDark} aria-label="Toggle dark mode" className="px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-700">
-                                {dark ? <Sun size={16} /> : <Moon size={16} />}
-                            </button>
-                        </div>
+                        
                         
                         </div>
                 </div>

@@ -9,6 +9,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 export const metadata = {
     title: "ABU Marketplace - Shop smarter",
     description: "ABU Marketplace - Shop smarter",
+    icons: {
+        icon: '/assets/Abulogo.png',
+        shortcut: '/assets/Abulogo.png',
+        apple: '/assets/Abulogo.png'
+    }
 };
 
 export default function RootLayout({ children }) {
