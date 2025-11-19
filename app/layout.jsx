@@ -10,9 +10,9 @@ export const metadata = {
     title: "ABU Marketplace - Shop smarter",
     description: "ABU Marketplace - Shop smarter",
     icons: {
-        icon: '/Abulogo.ico',
-        shortcut: '/favicon-32x32.png',
-        apple: '/apple-touch-icon.png'
+        icon: '/Favicon.ico',
+        shortcut: '/Favicon.ico',
+        apple: '/Favicon.ico'
     }
 };
 
